@@ -1,10 +1,6 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using Aurex.Properties;
+﻿
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -22,6 +18,7 @@ using System.Net;
 using System.Security.Claims;
 using Newtonsoft.Json;
 using Aurex.BusinessLayer;
+using Aurex.Properties;
 
 namespace Aurex
 {
@@ -38,15 +35,17 @@ namespace Aurex
         private string porcentaje;
         private string stado;
         private bool r1;
-        List<Comandos> lista;
+        List<Comandos> lista; User user;Configuration settings;
         bool b = false;
         private string resultado;
-        private string receptor;
-        public FrmHome()
+        private string receptor; 
+        AUREX_AI _AI;
+        public FrmHome(User _user,Configuration c)
         {
             InitializeComponent();
             cargargramaticas();
-
+            user = _user;
+            settings = c;
             _AI = new AUREX_AI();
 
         }
@@ -445,7 +444,7 @@ namespace Aurex
             }
         }
         string speechTemp;bool confirmacion=false;
-        AUREX_AI _AI;
+        
         async void ComandoNoRegistrado(string confirmacion)
         {
             if (confirmacion.Equals("si"))
@@ -758,6 +757,28 @@ namespace Aurex
         {
             FrmIA _form=new FrmIA();
             _form.Show();
+        }
+
+        private void BatteryControl_Tick(object sender, EventArgs e)
+        {
+            string p;
+            Type estado = typeof(PowerStatus);
+            PropertyInfo[] propiedades = estado.GetProperties();
+            PropertyInfo carga = propiedades[3];
+            object valor = carga.GetValue(SystemInformation.PowerStatus, null);
+            p = ((float)valor * 100).ToString();
+            PropertyInfo conectado = propiedades[0];
+            object conexion = conectado.GetValue(SystemInformation.PowerStatus, null);
+
+            if ((int)conexion == 1 && p == "100" && b == false)
+            {
+                salidadevoz("Bateria al cien por ciento, desconecte cargador");
+                b = true;
+            }
+            if (int.Parse(p) < 100)
+            {
+                b = false;
+            }
         }
     }
 }

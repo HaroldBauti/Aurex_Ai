@@ -17,7 +17,17 @@ namespace Aurex
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmHome());
+
+            Splash _splash = new Splash();
+            _splash.FormClosed += _splash_FormClosed;
+            _splash.ShowDialog();
+            Application.Run();
+        }
+
+        private static void _splash_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.ExitThread();
+            Application.Exit();
         }
     }
 }

@@ -22,5 +22,17 @@ namespace Aurex.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string idUser {
+            get {
+                return ((string)(this["idUser"]));
+            }
+            set {
+                this["idUser"] = value;
+            }
+        }
     }
 }

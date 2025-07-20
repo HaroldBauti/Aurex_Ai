@@ -11,8 +11,8 @@ namespace Aurex.DataLayer
 {
     public class CreateDB
     {
-        readonly string path = "Aurex_ai.db";
-        public void CreateDBAndTables()
+        readonly static string path = "Aurex_ai.db";
+        public static void CreateDBAndTables()
         {
             if (!File.Exists(path))
             {

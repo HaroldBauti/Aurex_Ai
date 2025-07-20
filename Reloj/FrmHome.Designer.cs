@@ -48,6 +48,7 @@
             this.btnConfiguracion = new FontAwesome.Sharp.IconMenuItem();
             this.btnIA = new FontAwesome.Sharp.IconMenuItem();
             this.btnSalir = new FontAwesome.Sharp.IconMenuItem();
+            this.BatteryControl = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.picicono)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -110,7 +111,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Consolas", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.label4.Location = new System.Drawing.Point(13, 74);
+            this.label4.Location = new System.Drawing.Point(78, 147);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(25, 13);
             this.label4.TabIndex = 3;
@@ -133,7 +134,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Cyan;
-            this.label5.Location = new System.Drawing.Point(13, 74);
+            this.label5.Location = new System.Drawing.Point(13, 92);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 21;
@@ -219,7 +220,7 @@
             this.btnIA,
             this.btnSalir});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(151, 70);
             // 
             // btnConfiguracion
             // 
@@ -229,7 +230,7 @@
             this.btnConfiguracion.IconColor = System.Drawing.Color.Blue;
             this.btnConfiguracion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnConfiguracion.Name = "btnConfiguracion";
-            this.btnConfiguracion.Size = new System.Drawing.Size(180, 22);
+            this.btnConfiguracion.Size = new System.Drawing.Size(150, 22);
             this.btnConfiguracion.Text = "Configuracion";
             // 
             // btnIA
@@ -240,7 +241,7 @@
             this.btnIA.IconColor = System.Drawing.Color.Blue;
             this.btnIA.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnIA.Name = "btnIA";
-            this.btnIA.Size = new System.Drawing.Size(180, 22);
+            this.btnIA.Size = new System.Drawing.Size(150, 22);
             this.btnIA.Text = "IA";
             // 
             // btnSalir
@@ -251,8 +252,13 @@
             this.btnSalir.IconColor = System.Drawing.Color.Blue;
             this.btnSalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(180, 22);
+            this.btnSalir.Size = new System.Drawing.Size(150, 22);
             this.btnSalir.Text = "Salir";
+            // 
+            // BatteryControl
+            // 
+            this.BatteryControl.Enabled = true;
+            this.BatteryControl.Tick += new System.EventHandler(this.BatteryControl_Tick);
             // 
             // FrmHome
             // 
@@ -270,11 +276,11 @@
             this.Controls.Add(this.lblJueves);
             this.Controls.Add(this.lblViernes);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.picicono);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblLunes);
+            this.Controls.Add(this.picicono);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmHome";
             this.Text = "FrmHome";
@@ -307,6 +313,7 @@
         private FontAwesome.Sharp.IconMenuItem btnConfiguracion;
         private FontAwesome.Sharp.IconMenuItem btnIA;
         private FontAwesome.Sharp.IconMenuItem btnSalir;
+        private System.Windows.Forms.Timer BatteryControl;
     }
 }
 
