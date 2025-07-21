@@ -27,18 +27,17 @@ namespace Aurex.DataLayer
             }
         }
 
-        public bool SaveUser(User obj)
+        public bool SaveUser(User obj, out long last)
         {
             bool answer = true;
             using (SQLiteConnection connection = new SQLiteConnection(cs))
             {
                 connection.Open();
                 string query = "insert into User(" +
-                    "Id,NameUser,EmailUser,PasswordUser,Gender)" +
+                    "NameUser,EmailUser,PasswordUser,Gender)" +
                     "values(" +
-                    "@Id,@NameUser,@EmailUser,@PasswordUser,@Gender)";
+                    "@NameUser,@EmailUser,@PasswordUser,@Gender)";
                 SQLiteCommand cmd = new SQLiteCommand(query, connection);
-                cmd.Parameters.AddWithValue("@Id", obj.Id);
                 cmd.Parameters.AddWithValue("@NameUser", obj.Name);
                 cmd.Parameters.AddWithValue("@EmailUser", obj.Email);
                 cmd.Parameters.AddWithValue("@PasswordUser", obj.Password);
@@ -48,7 +47,12 @@ namespace Aurex.DataLayer
                 {
                     answer = false;
                 }
+                using (SQLiteCommand cmd2 = new SQLiteCommand("SELECT last_insert_rowid();", connection))
+                {
+                    last = (long)cmd2.ExecuteScalar();
+                }
             }
+            
             return answer;
         }
 
@@ -88,7 +92,7 @@ namespace Aurex.DataLayer
             {
                 connection.Open();
                 string query = "update User set NameUser=@NameUser,EmailUser=@EmailUser," +
-                    "PasswordUser=@PasswordUser,Gender=@Gender where Id=@Id)";
+                    "PasswordUser=@PasswordUser,Gender=@Gender where Id=@Id";
                 SQLiteCommand cmd = new SQLiteCommand(query, connection);
                 cmd.Parameters.AddWithValue("@Id", obj.Id);
                 cmd.Parameters.AddWithValue("@NameUser", obj.Name);

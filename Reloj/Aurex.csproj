@@ -120,11 +120,23 @@
     <Compile Include="EntityLayer\Gramaticas.cs" />
     <Compile Include="EntityLayer\User.cs" />
     <Compile Include="EntityLayer\Weather.cs" />
+    <Compile Include="FrmCommands.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCommands.Designer.cs">
+      <DependentUpon>FrmCommands.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmConfiguration.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmConfiguration.Designer.cs">
       <DependentUpon>FrmConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEmail.Designer.cs">
+      <DependentUpon>FrmEmail.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmHome.cs">
       <SubType>Form</SubType>
@@ -158,6 +170,9 @@
     <Compile Include="Utilities\ResponseImg.cs" />
     <EmbeddedResource Include="CtrlUser\IAChat.resx">
       <DependentUpon>IAChat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmConfiguration.resx">
+      <DependentUpon>FrmConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmHome.resx">
       <DependentUpon>FrmHome.cs</DependentUpon>

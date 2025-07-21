@@ -49,6 +49,8 @@
             this.btnIA = new FontAwesome.Sharp.IconMenuItem();
             this.btnSalir = new FontAwesome.Sharp.IconMenuItem();
             this.BatteryControl = new System.Windows.Forms.Timer(this.components);
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.btnBluetooth = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.picicono)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -59,7 +61,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Cyan;
-            this.label1.Location = new System.Drawing.Point(34, 9);
+            this.label1.Location = new System.Drawing.Point(54, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(60, 22);
             this.label1.TabIndex = 0;
@@ -71,7 +73,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(190)))), ((int)(((byte)(197)))));
-            this.label2.Location = new System.Drawing.Point(87, 9);
+            this.label2.Location = new System.Drawing.Point(107, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(60, 22);
             this.label2.TabIndex = 1;
@@ -93,11 +95,11 @@
             // 
             this.lblLunes.AutoSize = true;
             this.lblLunes.BackColor = System.Drawing.Color.Transparent;
-            this.lblLunes.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLunes.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLunes.ForeColor = System.Drawing.Color.Cyan;
-            this.lblLunes.Location = new System.Drawing.Point(148, 14);
+            this.lblLunes.Location = new System.Drawing.Point(173, 12);
             this.lblLunes.Name = "lblLunes";
-            this.lblLunes.Size = new System.Drawing.Size(31, 13);
+            this.lblLunes.Size = new System.Drawing.Size(35, 15);
             this.lblLunes.TabIndex = 2;
             this.lblLunes.Text = "Lun.";
             // 
@@ -109,11 +111,11 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Consolas", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Consolas", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(217)))), ((int)(((byte)(217)))));
-            this.label4.Location = new System.Drawing.Point(78, 147);
+            this.label4.Location = new System.Drawing.Point(94, 169);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(25, 13);
+            this.label4.Size = new System.Drawing.Size(40, 22);
             this.label4.TabIndex = 3;
             this.label4.Text = "HBA";
             // 
@@ -144,11 +146,11 @@
             // 
             this.lblViernes.AutoSize = true;
             this.lblViernes.BackColor = System.Drawing.Color.Transparent;
-            this.lblViernes.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblViernes.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblViernes.ForeColor = System.Drawing.Color.Cyan;
-            this.lblViernes.Location = new System.Drawing.Point(148, 66);
+            this.lblViernes.Location = new System.Drawing.Point(173, 64);
             this.lblViernes.Name = "lblViernes";
-            this.lblViernes.Size = new System.Drawing.Size(31, 13);
+            this.lblViernes.Size = new System.Drawing.Size(35, 15);
             this.lblViernes.TabIndex = 22;
             this.lblViernes.Text = "Vie.";
             // 
@@ -156,11 +158,11 @@
             // 
             this.lblJueves.AutoSize = true;
             this.lblJueves.BackColor = System.Drawing.Color.Transparent;
-            this.lblJueves.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblJueves.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblJueves.ForeColor = System.Drawing.Color.Cyan;
-            this.lblJueves.Location = new System.Drawing.Point(148, 53);
+            this.lblJueves.Location = new System.Drawing.Point(173, 51);
             this.lblJueves.Name = "lblJueves";
-            this.lblJueves.Size = new System.Drawing.Size(31, 13);
+            this.lblJueves.Size = new System.Drawing.Size(35, 15);
             this.lblJueves.TabIndex = 23;
             this.lblJueves.Text = "Jue.";
             // 
@@ -168,11 +170,11 @@
             // 
             this.lblMiercoles.AutoSize = true;
             this.lblMiercoles.BackColor = System.Drawing.Color.Transparent;
-            this.lblMiercoles.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMiercoles.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMiercoles.ForeColor = System.Drawing.Color.Cyan;
-            this.lblMiercoles.Location = new System.Drawing.Point(148, 40);
+            this.lblMiercoles.Location = new System.Drawing.Point(173, 38);
             this.lblMiercoles.Name = "lblMiercoles";
-            this.lblMiercoles.Size = new System.Drawing.Size(31, 13);
+            this.lblMiercoles.Size = new System.Drawing.Size(35, 15);
             this.lblMiercoles.TabIndex = 24;
             this.lblMiercoles.Text = "Mie.";
             // 
@@ -180,11 +182,11 @@
             // 
             this.lblMartes.AutoSize = true;
             this.lblMartes.BackColor = System.Drawing.Color.Transparent;
-            this.lblMartes.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMartes.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMartes.ForeColor = System.Drawing.Color.Cyan;
-            this.lblMartes.Location = new System.Drawing.Point(148, 27);
+            this.lblMartes.Location = new System.Drawing.Point(173, 25);
             this.lblMartes.Name = "lblMartes";
-            this.lblMartes.Size = new System.Drawing.Size(31, 13);
+            this.lblMartes.Size = new System.Drawing.Size(35, 15);
             this.lblMartes.TabIndex = 25;
             this.lblMartes.Text = "Mar.";
             // 
@@ -192,11 +194,11 @@
             // 
             this.lblSabado.AutoSize = true;
             this.lblSabado.BackColor = System.Drawing.Color.Transparent;
-            this.lblSabado.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSabado.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSabado.ForeColor = System.Drawing.Color.Cyan;
-            this.lblSabado.Location = new System.Drawing.Point(148, 79);
+            this.lblSabado.Location = new System.Drawing.Point(173, 77);
             this.lblSabado.Name = "lblSabado";
-            this.lblSabado.Size = new System.Drawing.Size(31, 13);
+            this.lblSabado.Size = new System.Drawing.Size(35, 15);
             this.lblSabado.TabIndex = 26;
             this.lblSabado.Text = "Sab.";
             // 
@@ -204,23 +206,24 @@
             // 
             this.lblDomingo.AutoSize = true;
             this.lblDomingo.BackColor = System.Drawing.Color.Transparent;
-            this.lblDomingo.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDomingo.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDomingo.ForeColor = System.Drawing.Color.Cyan;
-            this.lblDomingo.Location = new System.Drawing.Point(148, 92);
+            this.lblDomingo.Location = new System.Drawing.Point(173, 90);
             this.lblDomingo.Name = "lblDomingo";
-            this.lblDomingo.Size = new System.Drawing.Size(31, 13);
+            this.lblDomingo.Size = new System.Drawing.Size(35, 15);
             this.lblDomingo.TabIndex = 27;
             this.lblDomingo.Text = "Dom.";
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.BackColor = System.Drawing.SystemColors.GrayText;
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnConfiguracion,
             this.btnIA,
             this.btnSalir});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(151, 70);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 82);
             // 
             // btnConfiguracion
             // 
@@ -230,8 +233,9 @@
             this.btnConfiguracion.IconColor = System.Drawing.Color.Blue;
             this.btnConfiguracion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnConfiguracion.Name = "btnConfiguracion";
-            this.btnConfiguracion.Size = new System.Drawing.Size(150, 22);
+            this.btnConfiguracion.Size = new System.Drawing.Size(154, 26);
             this.btnConfiguracion.Text = "Configuracion";
+            this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
             // 
             // btnIA
             // 
@@ -241,7 +245,7 @@
             this.btnIA.IconColor = System.Drawing.Color.Blue;
             this.btnIA.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnIA.Name = "btnIA";
-            this.btnIA.Size = new System.Drawing.Size(150, 22);
+            this.btnIA.Size = new System.Drawing.Size(154, 26);
             this.btnIA.Text = "IA";
             // 
             // btnSalir
@@ -252,7 +256,7 @@
             this.btnSalir.IconColor = System.Drawing.Color.Blue;
             this.btnSalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(150, 22);
+            this.btnSalir.Size = new System.Drawing.Size(154, 26);
             this.btnSalir.Text = "Salir";
             // 
             // BatteryControl
@@ -260,15 +264,40 @@
             this.BatteryControl.Enabled = true;
             this.BatteryControl.Tick += new System.EventHandler(this.BatteryControl_Tick);
             // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
+            // 
+            // btnBluetooth
+            // 
+            this.btnBluetooth.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(16)))), ((int)(((byte)(21)))));
+            this.btnBluetooth.FlatAppearance.BorderSize = 0;
+            this.btnBluetooth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBluetooth.IconChar = FontAwesome.Sharp.IconChar.Bluetooth;
+            this.btnBluetooth.IconColor = System.Drawing.Color.Red;
+            this.btnBluetooth.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBluetooth.IconSize = 25;
+            this.btnBluetooth.Location = new System.Drawing.Point(204, 38);
+            this.btnBluetooth.Name = "btnBluetooth";
+            this.btnBluetooth.Size = new System.Drawing.Size(32, 30);
+            this.btnBluetooth.TabIndex = 28;
+            this.btnBluetooth.UseVisualStyleBackColor = false;
+            this.btnBluetooth.Click += new System.EventHandler(this.btnBluetooth_Click);
+            this.btnBluetooth.MouseEnter += new System.EventHandler(this.btnBluetooth_MouseEnter);
+            // 
             // FrmHome
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(12)))), ((int)(((byte)(12)))));
             this.BackgroundImage = global::Aurex.Properties.Resources.Aurex_ai;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(191, 169);
+            this.ClientSize = new System.Drawing.Size(242, 200);
             this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.btnBluetooth);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblDomingo);
             this.Controls.Add(this.lblSabado);
             this.Controls.Add(this.lblMartes);
@@ -278,7 +307,6 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblLunes);
             this.Controls.Add(this.picicono);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -314,6 +342,8 @@
         private FontAwesome.Sharp.IconMenuItem btnIA;
         private FontAwesome.Sharp.IconMenuItem btnSalir;
         private System.Windows.Forms.Timer BatteryControl;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private FontAwesome.Sharp.IconButton btnBluetooth;
     }
 }
 

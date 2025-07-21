@@ -24,7 +24,6 @@ namespace Aurex
         private static List<User> users;
         static string voz;
         SpeechSynthesizer Aurex = new SpeechSynthesizer();
-        int idUsuario;
         int valuep = 0;
         public Splash()
         {
@@ -63,7 +62,7 @@ namespace Aurex
                             timer1.Start();
 
                         }
-                        configuration = new BL_Configuration().LoadConfiguration(idUsuario);
+                        configuration = new BL_Configuration().LoadConfiguration(user.Id);
                        
                         voz = configuration.VoiceAssistant;
                         Aurex.SelectVoice(voz);
@@ -123,8 +122,7 @@ namespace Aurex
                 timer1.Stop();
                 if (user == null)
                 {
-                    FrmConfiguration conf = new FrmConfiguration(0, 0);
-
+                    FrmConfiguration conf = new FrmConfiguration(0);
                     Dispose();
                     conf.ShowDialog();
                 }

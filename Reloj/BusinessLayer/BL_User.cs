@@ -7,9 +7,9 @@ namespace Aurex.BusinessLayer
 {
     public class BL_User
     {
-        public bool SaveUser(User obj)
+        public bool SaveUser(User obj, out long last)
         {
-            return DL_User.Instance.SaveUser(obj);
+            return DL_User.Instance.SaveUser(obj, out last);
         }
 
         public List<User> LoadUser()

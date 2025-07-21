@@ -60,7 +60,7 @@
             this.bunifuCircleProgressbar1.Name = "bunifuCircleProgressbar1";
             this.bunifuCircleProgressbar1.ProgressBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(190)))), ((int)(((byte)(197)))));
             this.bunifuCircleProgressbar1.ProgressColor = System.Drawing.Color.DarkCyan;
-            this.bunifuCircleProgressbar1.Size = new System.Drawing.Size(179, 179);
+            this.bunifuCircleProgressbar1.Size = new System.Drawing.Size(143, 143);
             this.bunifuCircleProgressbar1.TabIndex = 2;
             this.bunifuCircleProgressbar1.Value = 0;
             // 
@@ -81,14 +81,15 @@
             // 
             // Splash
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(178, 179);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.bunifuCircleProgressbar1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Splash";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Splash";
             this.Load += new System.EventHandler(this.Splash_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

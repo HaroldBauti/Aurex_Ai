@@ -38,16 +38,28 @@ namespace Aurex
         List<Comandos> lista; User user;Configuration settings;
         bool b = false;
         private string resultado;
+
+        SerialPort portArduino;
         private string receptor; 
         AUREX_AI _AI;
         public FrmHome(User _user,Configuration c)
         {
             InitializeComponent();
-            cargargramaticas();
+            cargargramaticas(); 
+            portArduino = new SerialPort();
+            portArduino.PortName = settings.PortBt;//el nombre del puerto del bluetoh
+            portArduino.BaudRate = 9600;
+
+            portArduino.DataReceived += PortArduino_DataReceived;
             user = _user;
             settings = c;
             _AI = new AUREX_AI();
 
+        }
+        private void PortArduino_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            receptor = portArduino.ReadLine();
+            Invoke(new EventHandler(actualizar));
         }
         private void actualizar(object sender, EventArgs e)
         {
@@ -114,16 +126,16 @@ namespace Aurex
             reconocedor.LoadGrammar(new Grammar(new Choices(cmd.listacomadoS.ToArray(typeof(string)) as string[])));
             reconocedor.LoadGrammarAsync(new Grammar(new GrammarBuilder(new Choices(File.ReadAllLines("Comandodeefecto.txt")))));
             reconocedor.LoadGrammarAsync(new Grammar(new GrammarBuilder(new Choices("Aurex"))));
-            //string x = "soy " + user.nombre;
+            //string x = "soy " + user.Name;
             //reconocedor.LoadGrammarAsync(new Grammar(new GrammarBuilder(new Choices(x))));
             reconocedor.LoadGrammar(Gramaticas.Cargargramaticasweb());
             //reconocedor.LoadGrammar(gramaticas.caragargramaticaescribir());
-            Choices nombres = new Choices(new string[] { "Harold", "Efrain" });
+            /* nombres = new Choices(new string[] { "Harold", "Efrain" });
             GrammarBuilder crearfrase = new GrammarBuilder("mi nombre es");
-            crearfrase.Append(nombres);
+            crearfrase.Append(nombres);*/
 
-            Grammar gramaticanombres = new Grammar(crearfrase);
-            reconocedor.LoadGrammar(gramaticanombres);
+            //Grammar gramaticanombres = new Grammar(crearfrase);
+            //reconocedor.LoadGrammar(gramaticanombres);
 
             Choices buscadores = new Choices(new string[] { "google", "youtube", "facebook" });
             GrammarBuilder buscar = new GrammarBuilder("buscar en");
@@ -174,27 +186,25 @@ namespace Aurex
             {
                 if (speech == nombreappk)
                 {
-                    salidadevoz("Si señor  ");
-                    //labelreconocimiento.Text = "";
-                    //labelreconocimiento.Text = speech;
+                    salidadevoz(user.Gender== "Masculino" ? "Si señor " + user.Name : "Si señorita " + user.Name);
                     comandoejecutado = true;
                 }
                 viernes = true;
                 switch (speech)
                 {
                     case "Buenos dias":
-
-                        salidadevoz("buenos dias señor");
-
-                        //labelreconocimiento.Text = "";
-                        //labelreconocimiento.Text = speech;
+                        salidadevoz(user.Gender == "Masculino" ? "Buenos dias señor" + user.Name :
+                            "buenos dias señorita " + user.Name);
+                        comandoejecutado = true;
+                        break;
+                    case "Buenas tardes":
+                        salidadevoz(user.Gender == "Masculino" ? "Buenas tardes señor" + user.Name :
+                            "Buenas tardes señorita " + user.Name);
                         comandoejecutado = true;
                         break;
                     case "Buenas noches":
-                        salidadevoz("buenas noches señor");
-
-                        //labelreconocimiento.Text = "";
-                        //labelreconocimiento.Text = speech;
+                        salidadevoz(user.Gender == "Masculino" ? "Buenas noches señor" + user.Name :
+                            "Buenas noches señorita " + user.Name);
                         comandoejecutado = true;
                         break;
                     case "Bateria":
@@ -202,176 +212,93 @@ namespace Aurex
                         break;
                     case "Clima":
                         Aurex.Speak("El clima");
-                        //obtenerclima();
-                        //labelreconocimiento.Text = "";
-                        //labelreconocimiento.Text = speech;
+                        obtenerclima();
                         comandoejecutado = true;
                         break;
-                    case "Buenas tardes":
-                        salidadevoz("buenas tardes señor");
-
-                        //labelreconocimiento.Text = "";
-                        //labelreconocimiento.Text = speech;
-                        comandoejecutado = true;
-                        break;
+                    
                     case "Eliminar papelera":
                         salidadevoz("eliminando archivos de la papelera de reciclaje");
                         VaciarPapeleraReciclaje();
-                        //labelreconocimiento.Text = "";
-                        //labelreconocimiento.Text = speech;
                         comandoejecutado = true;
                         break;
                     case "Ventana de datos":
-                        Aurex.Speak("Abriendo Ventana de datos");
-                        //if (puertoarduino.IsOpen)
-                        //{
-                        //    Cache.conected = true;
-                        //    puertoarduino.Close();
-                        //}
-
-                        //dat.Show();
-                        //this.Close();
+                        OpenConfiguration();
                         comandoejecutado = true;
                         break;
                     case "Hasta luego":
                         salidadevoz("Estare esperando nuevas instrucciones");
                         viernes = false;
                         comandoejecutado = true;
-
                         break;
                     case "Muestrame la ventana de comandos":
                         Aurex.Speak("mostrando ventana de comandos");
-                        //if (puertoarduino.IsOpen)
-                        //{
-                        //    Cache.conectado = true;
-                        //    puertoarduino.Close();
-                        //}
-
-                        //formularioComandos.Show();
-                        //this.Close();
+                        OpenCommands();
                         comandoejecutado = true;
                         break;
                     case "Minimizar":
                         salidadevoz("Ventana asistente minimizada");
                         this.WindowState = FormWindowState.Minimized;
-                        //this.Hide();
-                        //notifyIcon1.Visible = true;
-
+                        this.Hide();
+                        notifyIcon1.Visible = true;
                         comandoejecutado = true;
                         break;
                     case "Tamaño normal":
                         salidadevoz("Ventana tamaño normal");
                         this.Show();
                         this.WindowState = FormWindowState.Normal;
-
                         comandoejecutado = true;
                         break;
                     case "Quien te programo":
-                        salidadevoz("Quien me programo es Harold Bautista");
+                        salidadevoz("Fui desarrollado por HBA Tecnología");
 
-                        //labelreconocimiento.Text = speech;
                         comandoejecutado = true;
                         break;
                     case "Que hora es":
-                        //hora();
                         salidadevoz("son las " + DateTime.Now.ToString("hh") + " con " + DateTime.Now.ToString("mm tt"));
-                        //labelreconocimiento.Text = "";
-                        //labelreconocimiento.Text = speech;
+                        
                         comandoejecutado = true;
                         break;
                     case "Que fecha estamos":
-                        //fecha();
                         salidadevoz("Estamos " + DateTime.Now.ToLongDateString());
-                        //labelreconocimiento.Text = "";
-                        //labelreconocimiento.Text = speech;
                         comandoejecutado = true;
                         break;
                     case "Que dia es":
                         string dia = DateTime.Now.ToString("dddd");
                         Aurex.SpeakAsync("hoy es " + dia);
-                        //labelreconocimiento.Text = "";
-                        //labelreconocimiento.Text = speech;
                         comandoejecutado = true;
                         break;
                     case "Cerrar asistente":
                         salidadevoz("Hasta pronto" + ". . . . . . . .");
-                        //if (puertoarduino.IsOpen)
-                        //{
-                        //    puertoarduino.Close();
-                        //}
+                        ClosePortArduino();
                         Application.Exit();
-                        comandoejecutado = true;
                         break;
                     case "Apagar equipo":
-                        ProcessStartInfo inf = new ProcessStartInfo("cmd", "/c shutdown -s -t 30");
-                        Process pro = new Process();
-                        pro.StartInfo = inf;
                         salidadevoz("Apagando equipo , si no quieres apagar el equipo solo di cancelar apagado");
-                        pro.Start();
-
+                        Shutdown();
                         comandoejecutado = true;
                         break;
                     case "Cancelar apagado":
-                        ProcessStartInfo info = new ProcessStartInfo("cmd", "/c shutdown -a");
-                        Process proc = new Process();
-                        proc.StartInfo = info;
                         salidadevoz("Apagar equipo cancelado");
-                        proc.Start();
-
+                        NoShutdown();
                         comandoejecutado = true;
                         break;
                     case "Desconectar":
-                        //if (puertoarduino.IsOpen)
-                        //{
-                        //    puertoarduino.Close();
-                        //    salidadevoz("Desconectado con casa");
-
-                        //    pbxbt.BackgroundImage = Properties.Resources.btdesactivado;
-
-                        //}
-                        //else
-                        //{
-                        //    salidadevoz("Aun no se a conectado con la casa");
-                        //}
+                        salidadevoz(DisconnectBluetooth() ? "Desconectado con casa": "Aun no se a conectado con la casa");
                         comandoejecutado = true;
                         break;
 
                     case "Ventana de correo":
                         Aurex.Speak("mostrando ventana para enviar correos");
-                        //if (puertoarduino.IsOpen)
-                        //{
-                        //    Cache.conectado = true;
-                        //    puertoarduino.Close();
-                        //}
-
-                        //correo.Show();
-                        this.Close();
-
+                        OpenEmail();
                         comandoejecutado = true;
 
                         break;
 
                     case "Conectar con casa":
                         Aurex.Speak("Conectando con blutu");
-                        //if (puertoarduino.IsOpen)
-                        //{
-                        //    salidadevoz("Ya estas conectado");
-                        //}
-                        //else
-                        //{
-                        //    try
-                        //    {
-                        //        puertoarduino.Open();
-                        //        salidadevoz("Conectado con casa");
-                        //        pbxbt.BackgroundImage = Properties.Resources.btactivado;
 
-                        //    }
-                        //    catch (Exception ex)
-                        //    {
+                        salidadevoz(ConnectedBluetooth() ? "Conectado con casa" : "Active su Bluetooth o vuelva a intentarlo.");
 
-                        //        salidadevoz(ex.Message + " active su blutu o vuelva a intentarlo");
-                        //    }
-                        //}
                         comandoejecutado = true;
                         break;
 
@@ -380,7 +307,6 @@ namespace Aurex
                 if (comandoejecutado == false)
                 {
                     ejecutarcomandoAcces(speech);
-                    //labelreconocimiento.Text = speech;
                 }/*
                 if (!comandoejecutado)
                 {
@@ -400,7 +326,6 @@ namespace Aurex
                             Aurex.Speak("Has dicho: " + speech);
                             speechTemp = speech; // Guarda el comando original
                             confirmacion = true;
-
                             reconocedor.RecognizeAsync(RecognizeMode.Multiple);
                         }
                     }
@@ -465,9 +390,42 @@ namespace Aurex
                 viernes= false;
                 comandoejecutado = true;
         }
-        void resul(string comando)
+
+        bool DisconnectBluetooth()
         {
-            resultado = comando;
+            if (portArduino.IsOpen)
+            {
+                btnBluetooth.IconColor= Color.Red;
+                portArduino.Close();
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        bool ConnectedBluetooth()
+        {
+            try
+            {
+                if (portArduino.IsOpen)
+                {
+                    return true;
+                }
+                else
+                {
+                    portArduino.Open();
+                    btnBluetooth.IconColor= Color.LimeGreen;
+                    return true;
+
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         void ejecutarcomandoAcces(string _speech)
@@ -611,6 +569,21 @@ namespace Aurex
             }
         }
 
+        void Shutdown()
+        {
+            ProcessStartInfo inf = new ProcessStartInfo("cmd", "/c shutdown -s -t 30");
+            Process pro = new Process();
+            pro.StartInfo = inf;
+            pro.Start();
+        }
+        void NoShutdown()
+        {
+            ProcessStartInfo info = new ProcessStartInfo("cmd", "/c shutdown -a");
+            Process proc = new Process();
+            proc.StartInfo = info;
+            proc.Start();
+
+        }
         void salidadevoz(string texto)
         {
             if (texto == "Hasta pronto" + ". . . . . . . .")
@@ -650,37 +623,62 @@ namespace Aurex
             }
             salidadevoz("bateria al " + porcentaje + " por ciento, " + stado);
         }
-        void obtenerclima()
+
+        void LoadWeather()
         {
-
-            //api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
-            //api.openweathermap.org/data/2.5/weather?q={city name},{state code},{country code}&appid={API key}
-            /*if (settings.ciudad == "")
-            {
-                salidadevoz("Aun no a selecionado la ciudad");
-            }
-            else
-            {*/
-
             try
             {
                 WebClient web = new WebClient();
                 string url = "";
-                /*if ((settings.ciudad != "") && (settings.codPostal != ""))
+                if ((settings.City != "") && (settings.City != ""))
                 {
-                    url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0},{1},PE&appid={2}&lang=sp", settings.ciudad, settings.codPostal, apKey);
+                    url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0},{1},PE&appid={2}&lang=sp", settings.City, settings.ZipCode, apKey);
                 }
-                if (settings.ciudad != "")
+                if (settings.City != "")
                 {
-                    url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0},&appid={1}&lang=sp&units", settings.ciudad, apKey);
+                    url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0},&appid={1}&lang=sp&units", settings.City, apKey);
 
                 }
-                if (settings.codPostal != "")
+                if (settings.ZipCode != "")
                 {
-                    url = string.Format("https://api.openweathermap.org/data/2.5/weather?zip={0},PE&appid={1}&lang=sp", settings.codPostal, apKey);
-                }*/
-                    url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0},&appid={1}&lang=sp&units", "Chiclayo", apKey);
+                    url = string.Format("https://api.openweathermap.org/data/2.5/weather?zip={0},PE&appid={1}&lang=sp", settings.ZipCode, apKey);
+                }
+                var json = web.DownloadString(url);
+                Weather.root inf = JsonConvert.DeserializeObject<Weather.root>(json);
 
+                picicono.Visible = true;
+
+                string url_icono = "http://openweathermap.org/img/w/" + inf.weather[0].icon + ".png";
+                picicono.ImageLocation = url_icono;
+                label5.Text = Math.Round(inf.main.temp - 273.15, 0).ToString() + "C°";
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                salidadevoz(ex.Message);
+            }
+        }
+
+        void obtenerclima()
+        {
+            try
+            {
+                WebClient web = new WebClient();
+                string url = "";
+                if ((settings.City != "") && (settings.City != ""))
+                {
+                    url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0},{1},PE&appid={2}&lang=sp", settings.City, settings.ZipCode, apKey);
+                }
+                if (settings.City != "")
+                {
+                    url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0},&appid={1}&lang=sp&units", settings.City, apKey);
+
+                }
+                if (settings.ZipCode != "")
+                {
+                    url = string.Format("https://api.openweathermap.org/data/2.5/weather?zip={0},PE&appid={1}&lang=sp", settings.ZipCode, apKey);
+                }
                 var json = web.DownloadString(url);
                 Weather.root inf = JsonConvert.DeserializeObject<Weather.root>(json);
 
@@ -689,68 +687,25 @@ namespace Aurex
                 string url_icono= "http://openweathermap.org/img/w/" + inf.weather[0].icon + ".png";
                 picicono.ImageLocation = url_icono;
                 label5.Text= Math.Round(inf.main.temp - 273.15, 0).ToString()+"C°";
-                /*salidadevoz("En " + "Trujillo" + " se encuentra " + inf.weather[0].description.ToString() + ", la temperatura es de " + Math.Round(inf.main.temp - 273.15, 0) + " grados celcious \n" +
-                //salidadevoz("En " + settings.ciudad + " se encuentra " + inf.weather[0].description.ToString() + ", la temperatura es de " + (inf.main.temp - 273.15) + " grados celcious \n" +
-                      "velocidad del viento es " + inf.wind.speed.ToString() + " metros por segundo, humedad del " + inf.main.humidity + " por ciento y la presion es de " + inf.main.pressure.ToString() +
-                      "\nsalida del sol a las " + convertirtiempo(inf.sys.sunrise).ToShortTimeString().ToString() +
-                      ("\nla puesta del sol es a las " + convertirtiempo(inf.sys.sunset).ToShortTimeString().ToString()));
-                */
+                salidadevoz("En " + settings.City + " se encuentra " + inf.weather[0].description.ToString() + ", la temperatura es de " + (inf.main.temp - 273.15) + " grados celcious \n" +
+                          "velocidad del viento es " + inf.wind.speed.ToString() + " metros por segundo, humedad del " + inf.main.humidity + " por ciento y la presion es de " + inf.main.pressure.ToString() +
+                          "\nsalida del sol a las " + convertirtiempo(inf.sys.sunrise).ToShortTimeString().ToString() +
+                          ("\nla puesta del sol es a las " + convertirtiempo(inf.sys.sunset).ToShortTimeString().ToString()));
 
-
-                /*
-                using (WebClient web=new WebClient())
-                {
-                    string url="";
-                    if (Settings.Default.Ciudad != "" || Settings.Default.Ciudad != null || Settings.Default.Ciudad != " ")
-                    {
-                        url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0},&appid={1}&lang=sp&units=metric", Properties.Settings.Default.Ciudad, apKey);
-
-                    }
-                    if (Properties.Settings.Default.CodigoP == "" || Properties.Settings.Default.CodigoP == null || Properties.Settings.Default.CodigoP == " ")
-                    {
-                        url = string.Format("https://api.openweathermap.org/data/2.5/weather?zip={0},PE&appid={1}&lang=sp&units=metric", Settings.Default.CodigoP, apKey);
-                    }
-                    if (Settings.Default.CodigoP != "" || Settings.Default.CodigoP != null || Settings.Default.CodigoP != " "&& Settings.Default.CodigoP != "" || Settings.Default.CodigoP != null || Settings.Default.CodigoP != " ")
-                    {
-                        url = string.Format("https://api.openweathermap.org/data/2.5/weather?q={0},{1},PE&appid={2}&lang=sp&units=metric", Settings.Default.Ciudad, Settings.Default.CodigoP, apKey);
-                    }
-                    var json = web.DownloadString(url);
-                    climainf.root inf = JsonConvert.DeserializeObject<climainf.root>(json);
-
-                    picicono.Visible = true;
-                    lblciudad.Text = Settings.Default.Ciudad;
-                    lblciudad.Visible = true;
-                    picicono.ImageLocation = "https://openweathermap.org/img/w/" + inf.weather[0].icon + ".png";
-                    AvHBA.Speak(Settings.Default.Ciudad + " se encuentra " + inf.weather[0].description.ToString() + ", la temperatura es de " + (inf.main.temp));
-
-
-                    AvHBA.Speak("velocidad del viento es " + inf.wind.speed.ToString() + " metros por segundo, humedad del " + inf.main.humidity + " por ciento y la presion es de " + inf.main.pressure.ToString());
-                    AvHBA.Speak("amanece a las " + convertirtiempo(inf.sys.sunrise).ToShortTimeString().ToString());
-                    AvHBA.Speak("la puesta del sol es a las " + convertirtiempo(inf.sys.sunset).ToShortTimeString().ToString());
-
-
-
-                }*/
             }
             catch (Exception ex)
-                {
-                Console.WriteLine(ex.Message);
-                    salidadevoz(ex.Message);
-                }
-            //}
+            {
+                salidadevoz(ex.Message);
+            }
         }
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            foreach (InstalledVoice voces in Aurex.GetInstalledVoices())
-            {
-                Console.WriteLine(voces.VoiceInfo.Name);
-                //cbvoces.Items.Add(voces.VoiceInfo.Name);
-
-            }
+            Aurex.SelectVoice(settings.VoiceAssistant);
             lista = new CD_Comando().LeerComandos();
             comandos();
-            Aurex.SelectVoice("Microsoft Helena Desktop");
-            obtenerclima();
+            LoadWeather();
+
         }
 
         private void configuracionToolStripMenuItem_Click(object sender, EventArgs e)
@@ -779,6 +734,65 @@ namespace Aurex
             {
                 b = false;
             }
+        }
+        void ClosePortArduino()
+        {
+            if (portArduino.IsOpen)
+            {
+                portArduino.Close();
+            }
+        }
+        void ValidatePortArduino()
+        {
+            if (portArduino.IsOpen)
+            {
+                Cache.conected = true;
+                portArduino.Close();
+            }
+        }
+        void OpenCommands()
+        {
+            ValidatePortArduino();
+            FrmCommands conf = new FrmCommands(user.Id);
+            Dispose();
+            comandoejecutado = true;
+            conf.ShowDialog();
+        }
+        void OpenConfiguration()
+        {
+            Aurex.Speak("Abriendo Ventana de datos");
+            ValidatePortArduino();
+            FrmConfiguration conf = new FrmConfiguration(user.Id);
+            Dispose();
+            comandoejecutado = true;
+            conf.ShowDialog();
+
+        }
+        void OpenEmail()
+        {
+            ValidatePortArduino();
+            FrmEmail email = new FrmEmail(user,settings);
+            Dispose();
+            comandoejecutado = true;
+            email.ShowDialog();
+
+        }
+        private void btnConfiguracion_Click(object sender, EventArgs e)
+        {
+            OpenConfiguration();
+        }
+
+        private void btnBluetooth_MouseEnter(object sender, EventArgs e)
+        {
+            Cursor = Cursors.Hand;
+        }
+
+        private void btnBluetooth_Click(object sender, EventArgs e)
+        {
+            if (btnBluetooth.IconColor == Color.LimeGreen)
+                DisconnectBluetooth();
+            else
+                ConnectedBluetooth();
         }
     }
 }
