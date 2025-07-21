@@ -29,16 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbxGender = new System.Windows.Forms.ComboBox();
             this.txtPassword = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.txtEmail = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.txtName = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.cbxVoiceAssistant = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.txtBattery = new System.Windows.Forms.NumericUpDown();
             this.txtAssistantName = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.txtZipCode = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.txtCity = new Bunifu.Framework.UI.BunifuMaterialTextbox();
@@ -46,25 +45,15 @@
             this.txtPort = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.btnSave = new FontAwesome.Sharp.IconButton();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
-            this.groupBox1.SuspendLayout();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBattery)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.cbxGender);
-            this.groupBox1.Controls.Add(this.txtPassword);
-            this.groupBox1.Controls.Add(this.txtEmail);
-            this.groupBox1.Controls.Add(this.txtName);
-            this.groupBox1.Location = new System.Drawing.Point(34, 25);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(767, 67);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Informacion Personal";
             // 
             // cbxGender
             // 
@@ -72,10 +61,11 @@
             this.cbxGender.Items.AddRange(new object[] {
             "Masculino",
             "Femenino"});
-            this.cbxGender.Location = new System.Drawing.Point(639, 28);
+            this.cbxGender.Location = new System.Drawing.Point(648, 20);
             this.cbxGender.Name = "cbxGender";
-            this.cbxGender.Size = new System.Drawing.Size(121, 21);
+            this.cbxGender.Size = new System.Drawing.Size(145, 21);
             this.cbxGender.TabIndex = 3;
+            this.cbxGender.SelectedIndexChanged += new System.EventHandler(this.cbxGender_SelectedIndexChanged);
             // 
             // txtPassword
             // 
@@ -89,7 +79,7 @@
             this.txtPassword.LineIdleColor = System.Drawing.Color.Gray;
             this.txtPassword.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtPassword.LineThickness = 3;
-            this.txtPassword.Location = new System.Drawing.Point(429, 20);
+            this.txtPassword.Location = new System.Drawing.Point(438, 20);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(203, 33);
@@ -108,7 +98,7 @@
             this.txtEmail.LineIdleColor = System.Drawing.Color.Gray;
             this.txtEmail.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtEmail.LineThickness = 3;
-            this.txtEmail.Location = new System.Drawing.Point(218, 20);
+            this.txtEmail.Location = new System.Drawing.Point(266, 4);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(203, 33);
@@ -127,7 +117,7 @@
             this.txtName.LineIdleColor = System.Drawing.Color.Gray;
             this.txtName.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtName.LineThickness = 3;
-            this.txtName.Location = new System.Drawing.Point(7, 20);
+            this.txtName.Location = new System.Drawing.Point(4, 4);
             this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(203, 33);
@@ -147,25 +137,12 @@
             this.groupBox2.Controls.Add(this.txtBattery);
             this.groupBox2.Controls.Add(this.txtAssistantName);
             this.groupBox2.Controls.Add(this.cbxVoiceAssistant);
-            this.groupBox2.Location = new System.Drawing.Point(34, 98);
+            this.groupBox2.Location = new System.Drawing.Point(27, 235);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(767, 89);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
-            // 
-            // iconButton1
-            // 
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(861, 12);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(39, 23);
-            this.iconButton1.TabIndex = 6;
-            this.iconButton1.Text = "x";
-            this.iconButton1.UseVisualStyleBackColor = true;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
             // 
             // txtBattery
             // 
@@ -199,11 +176,24 @@
             this.txtAssistantName.TabIndex = 4;
             this.txtAssistantName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
+            // iconButton1
+            // 
+            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.iconButton1.IconColor = System.Drawing.Color.Black;
+            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.iconButton1.Location = new System.Drawing.Point(861, 12);
+            this.iconButton1.Name = "iconButton1";
+            this.iconButton1.Size = new System.Drawing.Size(39, 23);
+            this.iconButton1.TabIndex = 6;
+            this.iconButton1.Text = "x";
+            this.iconButton1.UseVisualStyleBackColor = true;
+            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.txtZipCode);
             this.groupBox3.Controls.Add(this.txtCity);
-            this.groupBox3.Location = new System.Drawing.Point(34, 196);
+            this.groupBox3.Location = new System.Drawing.Point(34, 330);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(447, 83);
             this.groupBox3.TabIndex = 3;
@@ -251,7 +241,7 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.txtPort);
-            this.groupBox4.Location = new System.Drawing.Point(487, 205);
+            this.groupBox4.Location = new System.Drawing.Point(487, 339);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(307, 74);
             this.groupBox4.TabIndex = 4;
@@ -282,7 +272,7 @@
             this.btnSave.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnSave.IconColor = System.Drawing.Color.Black;
             this.btnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSave.Location = new System.Drawing.Point(364, 309);
+            this.btnSave.Location = new System.Drawing.Point(364, 443);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 7;
@@ -295,33 +285,62 @@
             this.bunifuElipse1.ElipseRadius = 5;
             this.bunifuElipse1.TargetControl = this;
             // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.cbxGender);
+            this.panel1.Controls.Add(this.txtPassword);
+            this.panel1.ForeColor = System.Drawing.Color.DarkCyan;
+            this.panel1.Location = new System.Drawing.Point(27, 47);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(815, 63);
+            this.panel1.TabIndex = 8;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.42466F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.57534F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 261F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
+            this.tableLayoutPanel1.Controls.Add(this.txtName, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.txtEmail, 1, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(41, 130);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(801, 100);
+            this.tableLayoutPanel1.TabIndex = 9;
+            // 
             // FrmConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(33)))), ((int)(((byte)(47)))));
             this.ClientSize = new System.Drawing.Size(922, 450);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.iconButton1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmConfiguration";
             this.Text = "FrmConfiguration";
             this.Load += new System.EventHandler(this.FrmConfiguration_Load);
-            this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.txtBattery)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private System.Windows.Forms.GroupBox groupBox1;
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtName;
         private System.Windows.Forms.ComboBox cbxGender;
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtPassword;
@@ -338,5 +357,7 @@
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtPort;
         private FontAwesome.Sharp.IconButton btnSave;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

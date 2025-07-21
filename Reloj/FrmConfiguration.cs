@@ -38,7 +38,7 @@ namespace Aurex
                 oUser.Password = txtPassword.Text;
                 oUser.Gender = cbxGender.SelectedItem.ToString();
                 bool newUser= validacion()? new BL_User().SaveUser(oUser, out IdUser):false;
-                
+                oUser.Id = (int)IdUser;
                 if (newUser)
                 {
                     conf.IdUser = IdUser.ToString();
@@ -172,6 +172,11 @@ namespace Aurex
                     Application.Exit();
                 }
             }
+        }
+
+        private void cbxGender_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

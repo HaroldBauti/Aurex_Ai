@@ -47,12 +47,12 @@ namespace Aurex
             InitializeComponent();
             cargargramaticas(); 
             portArduino = new SerialPort();
+            user = _user;
+            settings = c;
             portArduino.PortName = settings.PortBt;//el nombre del puerto del bluetoh
             portArduino.BaudRate = 9600;
 
             portArduino.DataReceived += PortArduino_DataReceived;
-            user = _user;
-            settings = c;
             _AI = new AUREX_AI();
 
         }

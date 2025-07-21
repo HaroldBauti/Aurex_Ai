@@ -60,7 +60,7 @@
             this.bunifuCircleProgressbar1.Name = "bunifuCircleProgressbar1";
             this.bunifuCircleProgressbar1.ProgressBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(190)))), ((int)(((byte)(197)))));
             this.bunifuCircleProgressbar1.ProgressColor = System.Drawing.Color.DarkCyan;
-            this.bunifuCircleProgressbar1.Size = new System.Drawing.Size(143, 143);
+            this.bunifuCircleProgressbar1.Size = new System.Drawing.Size(179, 179);
             this.bunifuCircleProgressbar1.TabIndex = 2;
             this.bunifuCircleProgressbar1.Value = 0;
             // 
