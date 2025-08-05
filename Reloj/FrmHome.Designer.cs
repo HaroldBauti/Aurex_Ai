@@ -51,6 +51,8 @@
             this.BatteryControl = new System.Windows.Forms.Timer(this.components);
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.btnBluetooth = new FontAwesome.Sharp.IconButton();
+            this.btnCommands = new FontAwesome.Sharp.IconMenuItem();
+            this.btnEmail = new FontAwesome.Sharp.IconMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.picicono)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -220,10 +222,12 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnConfiguracion,
+            this.btnCommands,
+            this.btnEmail,
             this.btnIA,
             this.btnSalir});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 82);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(185, 156);
             // 
             // btnConfiguracion
             // 
@@ -233,7 +237,7 @@
             this.btnConfiguracion.IconColor = System.Drawing.Color.Blue;
             this.btnConfiguracion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnConfiguracion.Name = "btnConfiguracion";
-            this.btnConfiguracion.Size = new System.Drawing.Size(154, 26);
+            this.btnConfiguracion.Size = new System.Drawing.Size(184, 26);
             this.btnConfiguracion.Text = "Configuracion";
             this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
             // 
@@ -245,8 +249,9 @@
             this.btnIA.IconColor = System.Drawing.Color.Blue;
             this.btnIA.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnIA.Name = "btnIA";
-            this.btnIA.Size = new System.Drawing.Size(154, 26);
+            this.btnIA.Size = new System.Drawing.Size(184, 26);
             this.btnIA.Text = "IA";
+            this.btnIA.Click += new System.EventHandler(this.btnIA_Click);
             // 
             // btnSalir
             // 
@@ -256,7 +261,7 @@
             this.btnSalir.IconColor = System.Drawing.Color.Blue;
             this.btnSalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(154, 26);
+            this.btnSalir.Size = new System.Drawing.Size(184, 26);
             this.btnSalir.Text = "Salir";
             // 
             // BatteryControl
@@ -286,6 +291,25 @@
             this.btnBluetooth.UseVisualStyleBackColor = false;
             this.btnBluetooth.Click += new System.EventHandler(this.btnBluetooth_Click);
             this.btnBluetooth.MouseEnter += new System.EventHandler(this.btnBluetooth_MouseEnter);
+            // 
+            // btnCommands
+            // 
+            this.btnCommands.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnCommands.IconColor = System.Drawing.Color.Black;
+            this.btnCommands.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCommands.Name = "btnCommands";
+            this.btnCommands.Size = new System.Drawing.Size(184, 26);
+            this.btnCommands.Text = "Comandos";
+            this.btnCommands.Click += new System.EventHandler(this.btnCommands_Click);
+            // 
+            // btnEmail
+            // 
+            this.btnEmail.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnEmail.IconColor = System.Drawing.Color.Black;
+            this.btnEmail.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEmail.Name = "btnEmail";
+            this.btnEmail.Size = new System.Drawing.Size(184, 26);
+            this.btnEmail.Text = "Correo";
             // 
             // FrmHome
             // 
@@ -344,6 +368,8 @@
         private System.Windows.Forms.Timer BatteryControl;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private FontAwesome.Sharp.IconButton btnBluetooth;
+        private FontAwesome.Sharp.IconMenuItem btnCommands;
+        private FontAwesome.Sharp.IconMenuItem btnEmail;
     }
 }
 

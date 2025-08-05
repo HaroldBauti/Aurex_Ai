@@ -35,7 +35,7 @@ namespace Aurex
         private string porcentaje;
         private string stado;
         private bool r1;
-        List<Comandos> lista; User user;Configuration settings;
+        List<Command> lista; User user;Configuration settings;
         bool b = false;
         private string resultado;
 
@@ -45,10 +45,10 @@ namespace Aurex
         public FrmHome(User _user,Configuration c)
         {
             InitializeComponent();
-            cargargramaticas(); 
-            portArduino = new SerialPort();
             user = _user;
             settings = c;
+            cargargramaticas(); 
+            portArduino = new SerialPort();
             portArduino.PortName = settings.PortBt;//el nombre del puerto del bluetoh
             portArduino.BaudRate = 9600;
 
@@ -71,17 +71,6 @@ namespace Aurex
             if (r1 == false)
             {
                 salidadevoz(resultado + r);
-            }
-        }
-        void comandos()
-        {
-            
-            foreach (Comandos item in lista)
-            {
-                if (item.idUsuario != 1.ToString())
-                {
-                    lista.Remove(item);
-                }
             }
         }
         private void HoraFecha_Tick(object sender, EventArgs e)
@@ -121,9 +110,9 @@ namespace Aurex
 
         void cargargramaticas()
         {
-            cmd.cargarComandosGramar(1);
+            cmd.cargarComandosGramar(user.Id);
 
-            reconocedor.LoadGrammar(new Grammar(new Choices(cmd.listacomadoS.ToArray(typeof(string)) as string[])));
+            reconocedor.LoadGrammar(new Grammar(new Choices(cmd.listCommands.Select(c=>c.Comand).ToArray())));
             reconocedor.LoadGrammarAsync(new Grammar(new GrammarBuilder(new Choices(File.ReadAllLines("Comandodeefecto.txt")))));
             reconocedor.LoadGrammarAsync(new Grammar(new GrammarBuilder(new Choices("Aurex"))));
             //string x = "soy " + user.Name;
@@ -434,9 +423,9 @@ namespace Aurex
             {
                 foreach (var item in lista)
                 {
-                    if (_speech == item.comando)
+                    if (_speech == item.Comand)
                     {
-                        if (item.tipo == "Bluetooth")
+                        if (item.Type == "Bluetooth")
                         {
                             //if (Cache.conectado == true)
                             //{
@@ -467,26 +456,26 @@ namespace Aurex
                         }
                         else
                         {
-                            if (item.ruta == " " || item.ruta == "")
+                            if (item.Path == " " || item.Path == "")
                             {
-                                salidadevoz(item.respuesta.ToString());
+                                salidadevoz(item.Answer.ToString());
                                 comandoejecutado = true;
                             }
                             else
                             {
-                                if (item.comando.Split(' ')[0].ToString() == "Abrir" || item.comando.Split(' ')[0].ToString() == "abrir")
+                                if (item.Comand.Split(' ')[0].ToString() == "Abrir" || item.Comand.Split(' ')[0].ToString() == "abrir")
                                 {
-                                    salidadevoz(item.respuesta.ToString());
-                                    Process.Start(item.ruta.ToString());
+                                    salidadevoz(item.Answer.ToString());
+                                    Process.Start(item.Answer.ToString());
 
                                     comandoejecutado = true;
                                 }
                                 else
                                 {
-                                    if (item.comando.Split(' ')[0].ToString() == "Enviar" || item.comando.Split(' ')[0].ToString() == "enviar")
+                                    if (item.Comand.Split(' ')[0].ToString() == "Enviar" || item.Comand.Split(' ')[0].ToString() == "enviar")
                                     {
 
-                                        Aurex.Speak("mostrando ventana para enviar correo a " + item.ruta.ToString() + " ..................");
+                                        Aurex.Speak("mostrando ventana para enviar correo a " + item.Path.ToString() + " ..................");
                                         //Cache.email = item.respuesta.ToString();
                                         //frmCorreos cor = new frmCorreos(user, settings);
                                         //if (puertoarduino.IsOpen)
@@ -502,21 +491,21 @@ namespace Aurex
                                     }
                                     else
                                     {
-                                        Process[] procesos = Process.GetProcessesByName(item.ruta.ToString());
+                                        Process[] procesos = Process.GetProcessesByName(item.Path.ToString());
 
 
                                         for (int i = 0; i < procesos.Count(); i++)
                                         {
 
-                                            if (item.ruta.ToString() == "chrome" && i == 0)
+                                            if (item.Path.ToString() == "chrome" && i == 0)
                                             {
-                                                salidadevoz(item.respuesta.ToString());
+                                                salidadevoz(item.Answer.ToString());
                                             }
                                             else
                                             {
-                                                if (item.ruta.ToString() != "chrome")
+                                                if (item.Path.ToString() != "chrome")
                                                 {
-                                                    salidadevoz(item.respuesta.ToString());
+                                                    salidadevoz(item.Answer.ToString());
                                                 }
 
                                             }
@@ -702,8 +691,8 @@ namespace Aurex
         private void Form1_Load(object sender, EventArgs e)
         {
             Aurex.SelectVoice(settings.VoiceAssistant);
-            lista = new CD_Comando().LeerComandos();
-            comandos();
+            lista = new BL_Commands().LoadCommand(user.Id);
+           
             LoadWeather();
 
         }
@@ -793,6 +782,16 @@ namespace Aurex
                 DisconnectBluetooth();
             else
                 ConnectedBluetooth();
+        }
+
+        private void btnCommands_Click(object sender, EventArgs e)
+        {
+            OpenCommands();
+        }
+
+        private void btnIA_Click(object sender, EventArgs e)
+        {
+            OpenEmail();
         }
     }
 }

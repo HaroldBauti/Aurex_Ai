@@ -15,13 +15,17 @@ namespace Aurex
         [STAThread]
         static void Main()
         {
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new FrmCommands(1));
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
 
-            Splash _splash = new Splash();
-            _splash.FormClosed += _splash_FormClosed;
-            _splash.ShowDialog();
-            Application.Run();
+            //Splash _splash = new Splash();
+            //_splash.FormClosed += _splash_FormClosed;
+            //_splash.ShowDialog();
+            //Application.Run();
         }
 
         private static void _splash_FormClosed(object sender, FormClosedEventArgs e)

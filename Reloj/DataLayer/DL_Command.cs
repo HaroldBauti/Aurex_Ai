@@ -121,7 +121,7 @@ namespace Aurex.DataLayer
 
         }
         
-        public bool DeleteCommand(Command obj) {
+        public bool DeleteCommand(int obj) {
             bool answer = true;
             using (SQLiteConnection connection = new SQLiteConnection(cs))
             {
@@ -133,7 +133,7 @@ namespace Aurex.DataLayer
 
                 string query = @"delete from Command where Id=@id";
                 SQLiteCommand cmd = new SQLiteCommand(query, connection);
-                cmd.Parameters.AddWithValue("@id", obj.Id);
+                cmd.Parameters.AddWithValue("@id", obj);
                 cmd.CommandType = CommandType.Text;
                 if (cmd.ExecuteNonQuery() < 1)
                 {

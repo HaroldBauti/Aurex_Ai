@@ -32,7 +32,6 @@
             this.cbxGender = new System.Windows.Forms.ComboBox();
             this.txtPassword = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.txtEmail = new Bunifu.Framework.UI.BunifuMaterialTextbox();
-            this.txtName = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.cbxVoiceAssistant = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtBattery = new System.Windows.Forms.NumericUpDown();
@@ -45,14 +44,13 @@
             this.txtPort = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.btnSave = new FontAwesome.Sharp.IconButton();
             this.bunifuElipse1 = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.txtName = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtBattery)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cbxGender
@@ -79,7 +77,7 @@
             this.txtPassword.LineIdleColor = System.Drawing.Color.Gray;
             this.txtPassword.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtPassword.LineThickness = 3;
-            this.txtPassword.Location = new System.Drawing.Point(438, 20);
+            this.txtPassword.Location = new System.Drawing.Point(434, 8);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(203, 33);
@@ -98,31 +96,12 @@
             this.txtEmail.LineIdleColor = System.Drawing.Color.Gray;
             this.txtEmail.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtEmail.LineThickness = 3;
-            this.txtEmail.Location = new System.Drawing.Point(266, 4);
+            this.txtEmail.Location = new System.Drawing.Point(223, 8);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(203, 33);
             this.txtEmail.TabIndex = 1;
             this.txtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            // 
-            // txtName
-            // 
-            this.txtName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtName.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.txtName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtName.HintForeColor = System.Drawing.Color.Empty;
-            this.txtName.HintText = "Nombre";
-            this.txtName.isPassword = false;
-            this.txtName.LineFocusedColor = System.Drawing.Color.Blue;
-            this.txtName.LineIdleColor = System.Drawing.Color.Gray;
-            this.txtName.LineMouseHoverColor = System.Drawing.Color.Blue;
-            this.txtName.LineThickness = 3;
-            this.txtName.Location = new System.Drawing.Point(4, 4);
-            this.txtName.Margin = new System.Windows.Forms.Padding(4);
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(203, 33);
-            this.txtName.TabIndex = 0;
-            this.txtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // cbxVoiceAssistant
             // 
@@ -285,9 +264,30 @@
             this.bunifuElipse1.ElipseRadius = 5;
             this.bunifuElipse1.TargetControl = this;
             // 
+            // txtName
+            // 
+            this.txtName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtName.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.txtName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtName.HintForeColor = System.Drawing.Color.Empty;
+            this.txtName.HintText = "Nombre";
+            this.txtName.isPassword = false;
+            this.txtName.LineFocusedColor = System.Drawing.Color.Blue;
+            this.txtName.LineIdleColor = System.Drawing.Color.Gray;
+            this.txtName.LineMouseHoverColor = System.Drawing.Color.Blue;
+            this.txtName.LineThickness = 3;
+            this.txtName.Location = new System.Drawing.Point(12, 8);
+            this.txtName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(203, 33);
+            this.txtName.TabIndex = 0;
+            this.txtName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.txtEmail);
+            this.panel1.Controls.Add(this.txtName);
             this.panel1.Controls.Add(this.cbxGender);
             this.panel1.Controls.Add(this.txtPassword);
             this.panel1.ForeColor = System.Drawing.Color.DarkCyan;
@@ -296,30 +296,12 @@
             this.panel1.Size = new System.Drawing.Size(815, 63);
             this.panel1.TabIndex = 8;
             // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 53.42466F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 46.57534F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 261F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanel1.Controls.Add(this.txtName, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.txtEmail, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(41, 130);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(801, 100);
-            this.tableLayoutPanel1.TabIndex = 9;
-            // 
             // FrmConfiguration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(7)))), ((int)(((byte)(33)))), ((int)(((byte)(47)))));
             this.ClientSize = new System.Drawing.Size(922, 450);
-            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.iconButton1);
             this.Controls.Add(this.btnSave);
@@ -335,13 +317,11 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox4.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private Bunifu.Framework.UI.BunifuMaterialTextbox txtName;
         private System.Windows.Forms.ComboBox cbxGender;
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtPassword;
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtEmail;
@@ -358,6 +338,6 @@
         private FontAwesome.Sharp.IconButton btnSave;
         private Bunifu.Framework.UI.BunifuElipse bunifuElipse1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox txtName;
     }
 }

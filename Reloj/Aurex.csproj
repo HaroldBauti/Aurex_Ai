@@ -103,6 +103,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessLayer\AUREX_AI.cs" />
+    <Compile Include="BusinessLayer\BL_Commands.cs" />
     <Compile Include="BusinessLayer\BL_Configuration.cs" />
     <Compile Include="BusinessLayer\BL_User.cs" />
     <Compile Include="CtrlUser\IAChat.cs">
@@ -170,6 +171,9 @@
     <Compile Include="Utilities\ResponseImg.cs" />
     <EmbeddedResource Include="CtrlUser\IAChat.resx">
       <DependentUpon>IAChat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCommands.resx">
+      <DependentUpon>FrmCommands.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmConfiguration.resx">
       <DependentUpon>FrmConfiguration.cs</DependentUpon>
