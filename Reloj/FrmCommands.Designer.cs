@@ -605,7 +605,7 @@
             this.Controls.Add(this.label4);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FrmCommands";
-            this.Text = "FrmCommands";
+            this.Text = "Aurex";
             this.Load += new System.EventHandler(this.frmComandos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvprincipal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -37,7 +37,7 @@ namespace Aurex
                 oUser.Email = txtEmail.Text;
                 oUser.Password = txtPassword.Text;
                 oUser.Gender = cbxGender.SelectedItem.ToString();
-                bool newUser= validacion()? new BL_User().SaveUser(oUser, out IdUser):false;
+                bool newUser= Validation()? new BL_User().SaveUser(oUser, out IdUser):false;
                 oUser.Id = (int)IdUser;
                 if (newUser)
                 {
@@ -51,17 +51,16 @@ namespace Aurex
                     bool newConf=new BL_Configuration().SaveConfiguration(conf);
                     if (newConf)
                     {
-                        
                         Properties.Settings.Default.idUser = IdUser.ToString();
                         Properties.Settings.Default.Save();
-                        Aurex.Speak("Configuracion guardad");
+                        Aurex.Speak("Configuracion guardada");
                     }
                 }
                 else { oUser=null; }
             }
             else
             {
-                validacion();
+                Validation();
                 oUser.Name = txtName.Text;
                 oUser.Email = txtEmail.Text;
                 oUser.Password = txtPassword.Text;
@@ -85,7 +84,7 @@ namespace Aurex
             }
         }
 
-        public bool validacion()
+        public bool Validation()
         {
             if (txtName.Text.Trim() == string.Empty)
             {
@@ -116,12 +115,12 @@ namespace Aurex
 
             return true;
         }
-        private void llenarCampos()
+
+        private void FillFields()
         {
             foreach (InstalledVoice voces in Aurex.GetInstalledVoices())
             {
                 cbxVoiceAssistant.Items.Add(voces.VoiceInfo.Name);
-
             }
             if (oUser != null)
             {
@@ -144,12 +143,11 @@ namespace Aurex
             }
         }
 
-
         private void FrmConfiguration_Load(object sender, EventArgs e)
         {
             oUser = new BL_User().LoadUser().Where(u => u.Id == IdUser).FirstOrDefault();
             conf = new BL_Configuration().LoadConfiguration((int)IdUser);
-            llenarCampos();
+            FillFields();
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
