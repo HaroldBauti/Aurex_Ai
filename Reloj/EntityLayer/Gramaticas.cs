@@ -9,7 +9,7 @@ namespace Aurex.EntityLayer
 {
     public class Gramaticas
     {
-        static public Grammar Cargargramaticasweb()
+        static public Grammar LoadGrammarWeb()
         {
             Choices webs = new Choices(new string[] { "google", "youtube", "wikipedia", "facebook", "instagram" });
             GrammarBuilder frasesWeb = new GrammarBuilder("buscar");
@@ -22,7 +22,7 @@ namespace Aurex.EntityLayer
 
             return gwebs;
         }
-        static public Grammar Caragargramaticaescribir()
+        static public Grammar LoadGrammarWrite()
         {
             //Choices dictar = new Choices(new string[]);
             GrammarBuilder fraseescribir = new GrammarBuilder("escribir");
