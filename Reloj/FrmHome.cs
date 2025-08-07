@@ -479,19 +479,26 @@ namespace Aurex
         {
             ValidatePortArduino();
             FrmCommands conf = new FrmCommands(user.Id);
-            Dispose();
+            conf.Show();
+            this.Close();
             commandExecuted = true;
-            conf.ShowDialog();
         }
-
+        void OpenIA()
+        {
+            ValidatePortArduino();
+            FrmIA obj = new FrmIA();
+            obj.Show();
+            this.Close();
+            commandExecuted = true;
+        }
         void OpenConfiguration()
         {
             Aurex.Speak("Abriendo Ventana de datos");
             ValidatePortArduino();
             FrmConfiguration conf = new FrmConfiguration(user.Id);
-            Dispose();
+            conf.Show();
+            this.Close();
             commandExecuted = true;
-            conf.ShowDialog();
 
         }
 
@@ -499,9 +506,9 @@ namespace Aurex
         {
             ValidatePortArduino();
             FrmEmail email = new FrmEmail(user, settings);
-            Dispose();
+            email.Show();
+            this.Close();
             commandExecuted = true;
-            email.ShowDialog();
 
         }
         #endregion
@@ -739,12 +746,17 @@ namespace Aurex
         #endregion
 
         #region Buttons
-        private void configuracionToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void btnSalir_Click(object sender, EventArgs e)
         {
-            FrmIA _form = new FrmIA();
-            _form.Show();
+            ClosePortArduino();
+            Application.Exit();
         }
 
+        private void btnEmail_Click(object sender, EventArgs e)
+        {
+            OpenEmail();
+        }
         private void BatteryControl_Tick(object sender, EventArgs e)
         {
             string p;
@@ -792,7 +804,7 @@ namespace Aurex
 
         private void btnIA_Click(object sender, EventArgs e)
         {
-            OpenEmail();
+            OpenIA();
         }
 
         #endregion

@@ -227,7 +227,7 @@
             this.btnIA,
             this.btnSalir});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(155, 134);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(185, 156);
             // 
             // btnConfiguracion
             // 
@@ -237,7 +237,7 @@
             this.btnConfiguracion.IconColor = System.Drawing.Color.Blue;
             this.btnConfiguracion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnConfiguracion.Name = "btnConfiguracion";
-            this.btnConfiguracion.Size = new System.Drawing.Size(184, 26);
+            this.btnConfiguracion.Size = new System.Drawing.Size(154, 26);
             this.btnConfiguracion.Text = "Configuracion";
             this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
             // 
@@ -261,8 +261,9 @@
             this.btnEmail.IconColor = System.Drawing.Color.Blue;
             this.btnEmail.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnEmail.Name = "btnEmail";
-            this.btnEmail.Size = new System.Drawing.Size(184, 26);
+            this.btnEmail.Size = new System.Drawing.Size(154, 26);
             this.btnEmail.Text = "Correo";
+            this.btnEmail.Click += new System.EventHandler(this.btnEmail_Click);
             // 
             // btnIA
             // 
@@ -272,7 +273,7 @@
             this.btnIA.IconColor = System.Drawing.Color.Blue;
             this.btnIA.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnIA.Name = "btnIA";
-            this.btnIA.Size = new System.Drawing.Size(184, 26);
+            this.btnIA.Size = new System.Drawing.Size(154, 26);
             this.btnIA.Text = "IA";
             this.btnIA.Click += new System.EventHandler(this.btnIA_Click);
             // 
@@ -286,6 +287,7 @@
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(184, 26);
             this.btnSalir.Text = "Salir";
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // BatteryControl
             // 

@@ -18,7 +18,7 @@ namespace Aurex
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmCommands(1));
+            Application.Run(new FrmIA());
             //Application.EnableVisualStyles();
             //Application.SetCompatibleTextRenderingDefault(false);
 

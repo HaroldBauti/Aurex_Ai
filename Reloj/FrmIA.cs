@@ -1,4 +1,5 @@
 ﻿using Aurex.BusinessLayer;
+using Aurex.CtrlUser;
 using Aurex.Utilities;
 using Newtonsoft.Json;
 using System;
@@ -22,109 +23,57 @@ namespace Aurex
             InitializeComponent();
             _AI = new AUREX_AI();
         }
-        string apiKey = "AIzaSyAlPyUWBmSRAYmwlKo-6G2aUd22Fz2R16k";
-        async void ConsultarImg(string question)
+        #region Methods
+        async Task ConsultarText(string question)
         {
-
-            //var url = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent?key={apiKey}";
-            var url = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-preview-image-generation:generateContent?key={apiKey}";
-
-            var requestBody = new ImageRequest
-            {
-                contents = new List<ContentImg>
-            {
-                new ContentImg
-                {
-                    parts = new List<PartImg>
-                    {
-                        new PartImg
-                        {
-                            text = question
-                        }
-                    }
-                }
-            },
-                generationConfig = new GenerationConfig
-                {
-                    responseModalities = new List<string> { "TEXT", "IMAGE" }
-                }
-            };
-
-            string json = JsonConvert.SerializeObject(requestBody);
-
-             var client = new HttpClient();
-            var request = new HttpRequestMessage(HttpMethod.Post, url);
-            request.Content = new StringContent(json, Encoding.UTF8, "application/json");
-
             try
             {
-                var response = await client.SendAsync(request);
-                response.EnsureSuccessStatusCode();
-                string responseBody = await response.Content.ReadAsStringAsync();
+                Cursor = Cursors.WaitCursor;
 
-                // Deserializar
-                var result = JsonConvert.DeserializeObject<ImageResponse>(responseBody);
-                var part = result?.candidates?[0]?.content?.parts?[0];
+                string respuestaModelo = await _AI.Consultar(question);
 
-                if (!string.IsNullOrEmpty(part?.data))
-                {
-                    // Imagen recibida
-                    byte[] imageBytes = Convert.FromBase64String(part.data);
-                    using (var ms = new MemoryStream(imageBytes))
-                    {
-                        pictureBox1.Image = Image.FromStream(ms);
-                    }
-                }
-                else if (!string.IsNullOrEmpty(part?.data))
-                {
-                    // 👀 Muestra el texto que Gemini te devolvió
-                    MessageBox.Show("Texto en vez de imagen:\n" + part.data);
-                }
-                else
-                {
-                    MessageBox.Show("No se recibió ni imagen ni texto válido.");
-                }
-                /*string base64Image = result.candidates[0].content.parts[0].data;
-                Console.WriteLine(base64Image);
-                // Guardar imagen
-                byte[] imageBytes = Convert.FromBase64String(base64Image);
-                using (var ms = new MemoryStream(imageBytes))
-                {
-                    pictureBox1.Image = Image.FromStream(ms);
-                }*/
-                //File.WriteAllBytes("gemini-image.png", imageBytes);
-
-                Console.WriteLine("Imagen generada y guardada como 'gemini-image.png'");
+                DrawMessage(false, respuestaModelo);
             }
-            catch (Exception ex)
+            finally
             {
-                Console.WriteLine("Error: " + ex.Message);
+                Cursor = Cursors.Default; // Siempre vuelve al cursor normal, incluso si hay error
             }
         }
 
-        async void ConsultarText(string question)
+        void DrawMessage(bool to,string message)
         {
-            string respuestaModelo=await _AI.Consultar(question);
-            Console.WriteLine("Respuesta del modelo:");
-            Console.WriteLine(respuestaModelo);
+            Panel panelContainer=new Panel();
+            panelContainer.AutoSize = true;
+            IAChat chat=new IAChat();
+            chat.img.Image = to ? Properties.Resources.Aurex_ai : Properties.Resources.Aurex_ai;
+            chat.label.Text = message;
+            chat.label.AutoSize = true;
+            chat.labelTitle.Text = !to?"Aurex AI":"Tú";
+            panelContainer.Controls.Add(chat);
+            flowLayoutPanel1.Controls.Add(panelContainer);
+        }
+        #endregion
+        private async void iconButton1_Click(object sender, EventArgs e)
+        {
+            string query = textBox1.Text;
+            DrawMessage(true,query);
+            await ConsultarText(query);
         }
 
-        private void iconButton1_Click(object sender, EventArgs e)
-        {
-            ConsultarImg(txtQuestion.Text);
-        }
 
-        private void bunifuGradientPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void txtQuestion_KeyDown(object sender, KeyEventArgs e)
+        private async void txtQuestion_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyData == Keys.Enter)
             {
-                ConsultarText(txtQuestion.Text);
+                await ConsultarText(textBox1.Text);
+                textBox1.Text = string.Empty;
             }
+        }
+
+
+        private void FrmIA_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
