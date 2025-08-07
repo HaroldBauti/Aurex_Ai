@@ -46,13 +46,13 @@
             this.lblDomingo = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnConfiguracion = new FontAwesome.Sharp.IconMenuItem();
+            this.btnCommands = new FontAwesome.Sharp.IconMenuItem();
+            this.btnEmail = new FontAwesome.Sharp.IconMenuItem();
             this.btnIA = new FontAwesome.Sharp.IconMenuItem();
             this.btnSalir = new FontAwesome.Sharp.IconMenuItem();
             this.BatteryControl = new System.Windows.Forms.Timer(this.components);
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.btnBluetooth = new FontAwesome.Sharp.IconButton();
-            this.btnCommands = new FontAwesome.Sharp.IconMenuItem();
-            this.btnEmail = new FontAwesome.Sharp.IconMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.picicono)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -237,9 +237,33 @@
             this.btnConfiguracion.IconColor = System.Drawing.Color.Blue;
             this.btnConfiguracion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnConfiguracion.Name = "btnConfiguracion";
-            this.btnConfiguracion.Size = new System.Drawing.Size(184, 26);
+            this.btnConfiguracion.Size = new System.Drawing.Size(154, 26);
             this.btnConfiguracion.Text = "Configuracion";
             this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
+            // 
+            // btnCommands
+            // 
+            this.btnCommands.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.btnCommands.ForeColor = System.Drawing.Color.Cyan;
+            this.btnCommands.IconChar = FontAwesome.Sharp.IconChar.NfcDirectional;
+            this.btnCommands.IconColor = System.Drawing.Color.Blue;
+            this.btnCommands.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCommands.Name = "btnCommands";
+            this.btnCommands.Size = new System.Drawing.Size(154, 26);
+            this.btnCommands.Text = "Comandos";
+            this.btnCommands.Click += new System.EventHandler(this.btnCommands_Click);
+            // 
+            // btnEmail
+            // 
+            this.btnEmail.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.btnEmail.ForeColor = System.Drawing.Color.Cyan;
+            this.btnEmail.IconChar = FontAwesome.Sharp.IconChar.Envelope;
+            this.btnEmail.IconColor = System.Drawing.Color.Blue;
+            this.btnEmail.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEmail.Name = "btnEmail";
+            this.btnEmail.Size = new System.Drawing.Size(154, 26);
+            this.btnEmail.Text = "Correo";
+            this.btnEmail.Click += new System.EventHandler(this.btnEmail_Click);
             // 
             // btnIA
             // 
@@ -249,7 +273,7 @@
             this.btnIA.IconColor = System.Drawing.Color.Blue;
             this.btnIA.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnIA.Name = "btnIA";
-            this.btnIA.Size = new System.Drawing.Size(184, 26);
+            this.btnIA.Size = new System.Drawing.Size(154, 26);
             this.btnIA.Text = "IA";
             this.btnIA.Click += new System.EventHandler(this.btnIA_Click);
             // 
@@ -263,6 +287,7 @@
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(184, 26);
             this.btnSalir.Text = "Salir";
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // BatteryControl
             // 
@@ -291,25 +316,6 @@
             this.btnBluetooth.UseVisualStyleBackColor = false;
             this.btnBluetooth.Click += new System.EventHandler(this.btnBluetooth_Click);
             this.btnBluetooth.MouseEnter += new System.EventHandler(this.btnBluetooth_MouseEnter);
-            // 
-            // btnCommands
-            // 
-            this.btnCommands.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnCommands.IconColor = System.Drawing.Color.Black;
-            this.btnCommands.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCommands.Name = "btnCommands";
-            this.btnCommands.Size = new System.Drawing.Size(184, 26);
-            this.btnCommands.Text = "Comandos";
-            this.btnCommands.Click += new System.EventHandler(this.btnCommands_Click);
-            // 
-            // btnEmail
-            // 
-            this.btnEmail.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnEmail.IconColor = System.Drawing.Color.Black;
-            this.btnEmail.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEmail.Name = "btnEmail";
-            this.btnEmail.Size = new System.Drawing.Size(184, 26);
-            this.btnEmail.Text = "Correo";
             // 
             // FrmHome
             // 

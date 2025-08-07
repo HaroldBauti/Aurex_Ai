@@ -15,7 +15,7 @@ namespace Aurex.Utilities
         public List<Command> listCommands;
 
         BL_Commands c = new BL_Commands();
-        public void cargarComandosGramar(int idU)
+        public void LoadCommandGramar(int idU)
         {
             listCommands = new BL_Commands().LoadCommand(idU);
             try

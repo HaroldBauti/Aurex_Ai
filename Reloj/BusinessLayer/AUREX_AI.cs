@@ -6,13 +6,14 @@ using System.Net.Http;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using static Aurex.Utilities.Response;
 
 namespace Aurex.BusinessLayer
 {
     public class AUREX_AI
     {
-        public readonly string apiKey="AIzaSyAlPyUWBmSRAYmwlKo-6G2aUd22Fz2R16k";
+        public readonly string apiKey= Properties.Settings.Default.apiKeyAi;
 
         public async Task<string> Consultar(string question)
         {
@@ -47,7 +48,9 @@ namespace Aurex.BusinessLayer
 
             // Mostrar solo el texto generado por el modelo
             string respuestaModelo = respuesta.candidates[0].content.parts[0].text;
+            respuestaModelo = respuestaModelo.Replace("**", "");
             return respuestaModelo; 
+            
         }
     }
 }
